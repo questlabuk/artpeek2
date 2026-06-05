@@ -1,0 +1,19 @@
+{
+  "name": "artpeek-server",
+  "version": "1.0.0",
+  "description": "Art Peek — full-stack art sharing for kids & teens",
+  "type": "commonjs",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "bcryptjs": "^3.0.3",
+    "cookie-parser": "^1.4.7",
+    "express": "^5.2.1",
+    "jsonwebtoken": "^9.0.3",
+    "multer": "^2.1.1",
+    "sql.js": "^1.14.1"
+  }
+}

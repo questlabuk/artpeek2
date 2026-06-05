@@ -1,0 +1,28 @@
+# Render Blueprint for Art Peek.
+# On Render, choose "New +" -> "Blueprint" and point it at your repo; Render reads
+# this file and sets everything up (service, persistent disk, environment).
+#
+# The persistent disk + the "starter" plan are what keep your data permanently.
+# To deploy on the FREE plan instead (data resets when the app sleeps/redeploys),
+# change `plan: starter` to `plan: free` and delete the whole `disk:` section.
+
+services:
+  - type: web
+    name: art-peek
+    runtime: node
+    plan: starter            # paid (~$7/mo); required for the persistent disk below
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: JWT_SECRET       # keeps everyone logged in across restarts
+        generateValue: true   # Render generates a strong random value for you
+      - key: DATA_DIR         # database is written here (on the disk)
+        value: /var/data
+      - key: UPLOAD_DIR       # uploaded images are written here (on the disk)
+        value: /var/data/uploads
+    disk:
+      name: art-peek-data
+      mountPath: /var/data
+      sizeGB: 1
